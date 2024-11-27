@@ -1,76 +1,46 @@
 import os
 import gymnasium as gym
 
-from consolemenu import ConsoleMenu
-from consolemenu.items import FunctionItem
-
 from src.config.settings import Settings
+
 from src.agents.q_learning_agent import QLearningAgent
 from src.training.trainer import Trainer
-
-
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-def train_agent():
-    clear_screen()
-
-    print("🚀 Iniciando o treinamento do agente...\n")
-
-    env = gym.make('CartPole-v1')
-    settings = Settings()
-    agent = QLearningAgent(env)
-    trainer = Trainer(env, agent, settings)
-    trainer.train()
-
-    print("\n✅ Treinamento concluído!")
-    input("Pressione Enter para voltar ao menu principal...")
-
-
-def play_agent():
-    clear_screen()
-
-    print("🎮 Iniciando o jogo com o agente treinado...\n")
-
-    env = gym.make('CartPole-v1', render_mode='human')
-    settings = Settings()
-    agent = QLearningAgent(env)
-    trainer = Trainer(env, agent, settings)
-    trainer.play()
-
-    print("\n✅ Jogo concluído!")
-    input("Pressione Enter para voltar ao menu principal...")
-
-
-def exit_program():
-    clear_screen()
-
-    print("👋 Saindo do programa. Até logo!")
-
-    exit(0)
 
 
 def main():
     os.makedirs('checkpoints', exist_ok=True)
     os.makedirs('logs', exist_ok=True)
 
-    menu = ConsoleMenu(
-        "🎯 CartPole Training System",
-        "Selecione uma das opções abaixo:",
-        clear_screen=True,
-        show_exit_option=False
-    )
+    while True:
+        print("\n=== Menu ===")
+        print("1. Treinar novo agente")
+        print("2. Jogar com o melhor agente")
+        print("3. Sair")
 
-    train_item = FunctionItem("🧠 Treinar novo agente", train_agent)
-    play_item = FunctionItem("🎮 Jogar com o melhor agente", play_agent)
-    exit_item = FunctionItem("🚪 Sair", exit_program)
+        choice = input("\nEscolha uma opção: ")
 
-    menu.append_item(train_item)
-    menu.append_item(play_item)
-    menu.append_item(exit_item)
+        if choice == '1':
+            env = gym.make('CartPole-v1')
+            settings = Settings()
 
-    menu.show()
+            agent = QLearningAgent(env)
+            trainer = Trainer(env, agent, settings)
+
+            trainer.train()
+        elif choice == '2':
+            env = gym.make('CartPole-v1', render_mode='human')
+            settings = Settings()
+
+            agent = QLearningAgent(env)
+            trainer = Trainer(env, agent, settings)
+
+            trainer.play()
+        elif choice == '3':
+            break
+        else:
+            print("Opção inválida!")
+
+    env.close()
 
 
 if __name__ == "__main__":
