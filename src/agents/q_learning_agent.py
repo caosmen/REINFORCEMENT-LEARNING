@@ -1,7 +1,5 @@
-import os
 import pickle
 import numpy as np
-import gymnasium as gym
 
 from collections import deque
 
@@ -33,6 +31,7 @@ class QLearningAgent:
             bin_index = np.digitize(value, self.observation_space[i]) - 1
             bin_index = max(0, min(bin_index, self.n_bins - 1))
             discretized.append(bin_index)
+
         return tuple(discretized)
 
     def select_action(self, state, training=True):

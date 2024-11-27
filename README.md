@@ -44,32 +44,18 @@ O projeto oferece uma implementação robusta com diversas características impo
 
 ## Dependências Principais
 
-### Core Dependencies
-
-- gymnasium==0.29.1
-- pygame==2.5.2
-- numpy==1.24.3
-- pandas==2.0.3
-
-### Visualization Dependencies
-
-- matplotlib==3.7.3
-- seaborn==0.13.0
-
-### Utility Dependencies
-
-- python-dotenv==1.0.0
-- tqdm==4.66.1
-
-### Optional Monitoring Dependencies
-
-- tensorboard==2.14.1
-
-### Development Dependencies
-
-- black==23.11.0
-- pylint==3.0.2
-- pytest==7.4.3
+- gymnasium==1.0.0
+- pygame==2.6.1
+- numpy==2.1.3
+- pandas==2.2.3
+- matplotlib==3.9.2
+- seaborn==0.13.2
+- python-dotenv==1.0.1
+- tqdm==4.67.1
+- tensorboard==2.18.0
+- black==24.10.0
+- pylint==3.3.1
+- pytest==8.3.3
 
 ## Instalação e Configuração
 
